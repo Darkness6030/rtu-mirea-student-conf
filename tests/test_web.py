@@ -1,30 +1,14 @@
 """HTTP-регрессии без базы данных: реальные маршруты и JSON ПР3."""
 
-import os
 from pathlib import Path
 from html.parser import HTMLParser
 
-import django
 import pytest
-from django.test import Client, override_settings
 from django.urls import resolve, reverse
 
 from storage import load_json, save_json
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "studentconf.settings")
-django.setup()
 ROOT = Path(__file__).resolve().parent.parent
-
-
-@pytest.fixture
-def client(tmp_path):
-    with override_settings(
-        DEBUG=False,
-        ALLOWED_HOSTS=["testserver"],
-        DATA_FILE=tmp_path / "runtime.json",
-        SAMPLE_FILE=ROOT / "data/sample.json",
-    ):
-        yield Client()
 
 
 @pytest.mark.parametrize(
