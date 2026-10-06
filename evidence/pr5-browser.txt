@@ -1,0 +1,15 @@
+/ 200 Главная · СтудКонф
+/conferences/1/ 200 Студенческая наука 2026 · СтудКонф
+/talks/1/ 200 Сервис организации студенческих конференций · СтудКонф
+/nonexistent/ 404 Страница не найдена · СтудКонф
+mobile / overflow=false
+mobile /conferences/ overflow=false
+mobile /conferences/1/ overflow=false
+mobile /students/ overflow=false
+mobile /students/1/ overflow=false
+mobile /sections/ overflow=false
+mobile /sections/1/ overflow=false
+mobile /talks/ overflow=false
+mobile /talks/1/ overflow=false
+mobile /nonexistent/ overflow=false
+JavaScript errors: 0
