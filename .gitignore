@@ -11,3 +11,5 @@ __pycache__/
 *.sqlite3
 data/runtime*.json
 tmp/
+docs/
+results/
