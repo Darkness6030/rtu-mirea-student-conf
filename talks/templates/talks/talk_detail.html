@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}{{ talk.title }}{% endblock %}
+{% block content %}
+    <a class="back-link" href="{% url 'talks:list' %}">← Доклады</a>
+    <h1>{{ talk.title }}</h1>
+    <p class="lead">{{ talk.abstract }}</p>
+    <dl class="facts">
+        <div>
+            <dt>Автор</dt>
+            <dd><a href="{% url 'students:detail' talk.student.id %}">{{ talk.student.name }}</a></dd>
+        </div>
+        <div>
+            <dt>Секция</dt>
+            <dd><a href="{% url 'sections:detail' talk.section.id %}">{{ talk.section.name }}</a></dd>
+        </div>
+        <div>
+            <dt>Конференция</dt>
+            <dd><a href="{% url 'conferences:detail' talk.section.conference.id %}">{{ talk.section.conference.name }}</a></dd>
+        </div>
+        <div><dt>Статус</dt><dd>{% include "talks/includes/talk_status.html" %}</dd></div>
+    </dl>
+{% endblock %}

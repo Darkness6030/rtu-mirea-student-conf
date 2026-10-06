@@ -6,19 +6,16 @@ a:focus-visible { outline: 2px solid #245b49; outline-offset: 3px; }
 .site-header { background: white; border-bottom: 1px solid #ddd; }
 .header-inner, nav { display: flex; align-items: center; flex-wrap: wrap; gap: 16px; }
 .header-inner { padding: 20px 12px; }
-.brand { font-size: 24px; font-weight: bold; }
+.brand { display: flex; align-items: center; gap: 8px; font-size: 24px; font-weight: bold; }
 .nav-link { color: #52606b; padding: 6px; }
 .nav-link.active { color: #245b49; font-weight: bold; }
 main { min-height: 75vh; padding-top: 32px; padding-bottom: 32px; }
-.page-heading { margin-bottom: 24px; }
 h1 { font-size: 32px; }
-.eyebrow { color: #52606b; font-size: 13px; }
 .lead { font-size: 17px; white-space: pre-line; }
 .cards-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
 .card-body { padding: 20px; }
 .card-top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
 .card h2 { font-size: 22px; margin: 16px 0; }
-.card-action { margin-top: 16px; }
 .status { display: inline-block; background: #eee; padding: 4px 8px; border-radius: 4px; font-size: 13px; }
 .status-open { background: #e2efdf; color: #285622; }
 .status-cancelled { background: #fbe5df; color: #8a3420; }

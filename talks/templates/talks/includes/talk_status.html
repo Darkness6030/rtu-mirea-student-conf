@@ -1,0 +1,5 @@
+{% if talk.is_cancelled %}
+    <span class="status status-cancelled">{{ talk.status }}</span>
+{% else %}
+    <span class="status status-open">{{ talk.status }}</span>
+{% endif %}

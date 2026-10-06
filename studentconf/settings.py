@@ -1,4 +1,4 @@
-"""Настройки учебного веб-слоя ПР5 без базы данных и ORM."""
+"""Настройки учебного веб-слоя ПР6 без базы данных и ORM."""
 
 import os
 from pathlib import Path
@@ -22,7 +22,16 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 ROOT_URLCONF = "studentconf.urls"
-TEMPLATES = []
+TEMPLATES = [
+    {
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [BASE_DIR / "templates"],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": ["django.template.context_processors.request"],
+        },
+    },
+]
 WSGI_APPLICATION = "studentconf.wsgi.application"
 DATABASES = {}
 LANGUAGE_CODE = "ru-ru"

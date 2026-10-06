@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Конференции{% endblock %}
+{% block content %}
+    <h1>Конференции</h1>
+    <p>Всего: {{ conferences|length }}. Выберите конференцию, чтобы узнать сроки подачи и секции.</p>
+    <div class="cards-grid">
+        {% for conference in conferences %}
+            {% include "conferences/includes/conference_card.html" %}
+        {% empty %}
+            <p>Записей пока нет</p>
+        {% endfor %}
+    </div>
+{% endblock %}

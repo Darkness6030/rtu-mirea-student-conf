@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}{{ section.name }}{% endblock %}
+{% block content %}
+    <a class="back-link" href="{% url 'sections:list' %}">← Секции</a>
+    <h1>{{ section.name }}</h1>
+    <dl class="facts">
+        <div>
+            <dt>Конференция</dt>
+            <dd><a href="{% url 'conferences:detail' section.conference.id %}">{{ section.conference.name }}</a></dd>
+        </div>
+        <div><dt>Подано / лимит</dt><dd>{{ active_count }} / {{ section.capacity }}</dd></div>
+        <div><dt>Приём</dt><dd>{% include "sections/includes/section_status.html" %}</dd></div>
+    </dl>
+    <h2 class="h4">Доклады</h2>
+    <p>Всего: {{ talks|length }}, включая отменённые заявки.</p>
+    <div class="cards-grid">
+        {% for talk in talks %}
+            {% include "talks/includes/talk_card.html" %}
+        {% empty %}
+            <p>Записей пока нет</p>
+        {% endfor %}
+    </div>
+{% endblock %}

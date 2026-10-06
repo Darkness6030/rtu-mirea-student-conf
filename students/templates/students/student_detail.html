@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}{{ student.name }}{% endblock %}
+{% block content %}
+    <a class="back-link" href="{% url 'students:list' %}">← Студенты</a>
+    <h1>{{ student.name }}</h1>
+    <dl class="facts">
+        <div><dt>Группа</dt><dd>{{ student.group }}</dd></div>
+        <div><dt>Всего докладов</dt><dd>{{ talks|length }}</dd></div>
+    </dl>
+    <h2 class="h4">Доклады студента</h2>
+    <div class="cards-grid">
+        {% for talk in talks %}
+            {% include "talks/includes/talk_card.html" %}
+        {% empty %}
+            <p>Записей пока нет</p>
+        {% endfor %}
+    </div>
+{% endblock %}

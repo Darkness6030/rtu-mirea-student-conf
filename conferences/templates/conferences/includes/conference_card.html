@@ -1,0 +1,11 @@
+<article class="card">
+    <div class="card-body">
+        <div class="card-top">
+            <span>{{ conference.event_date|date:"d.m.Y" }}</span>
+            {% include "conferences/includes/conference_status.html" %}
+        </div>
+        <h2>{{ conference.name|default:"Без названия" }}</h2>
+        <p>{{ conference.location }}</p>
+        <a href="{% url 'conferences:detail' conference.id %}">О конференции →</a>
+    </div>
+</article>

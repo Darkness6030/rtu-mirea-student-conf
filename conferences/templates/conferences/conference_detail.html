@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}{{ conference.name }}{% endblock %}
+{% block content %}
+    <a class="back-link" href="{% url 'conferences:list' %}">← Конференции</a>
+    <h1>{{ conference.name }}</h1>
+    <p>{{ conference.location }}</p>
+    <dl class="facts">
+        <div><dt>Дата проведения</dt><dd>{{ conference.event_date|date:"d.m.Y" }}</dd></div>
+        <div><dt>Приём до включительно</dt><dd>{{ conference.deadline|date:"d.m.Y" }}</dd></div>
+        <div><dt>Статус</dt><dd>{% include "conferences/includes/conference_status.html" %}</dd></div>
+    </dl>
+    <h2 class="h4">Секции конференции</h2>
+    <ul class="list-group">
+        {% for section in sections %}
+            <li class="list-group-item">
+                <a href="{% url 'sections:detail' section.id %}">{{ section.name }}</a>
+                · лимит докладов: {{ section.capacity }}
+            </li>
+        {% empty %}
+            <li class="list-group-item">Записей пока нет</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

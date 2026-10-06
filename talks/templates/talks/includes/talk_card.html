@@ -1,0 +1,12 @@
+<article class="card">
+    <div class="card-body">
+        <div class="card-top">
+            <span>{{ talk.section.name }}</span>
+            {% include "talks/includes/talk_status.html" %}
+        </div>
+        <h2>{{ talk.title|default:"Без названия" }}</h2>
+        <p>{{ talk.student.name }}</p>
+        <p>{{ talk.abstract|truncatewords:20 }}</p>
+        <a href="{% url 'talks:detail' talk.id %}">Читать аннотацию →</a>
+    </div>
+</article>

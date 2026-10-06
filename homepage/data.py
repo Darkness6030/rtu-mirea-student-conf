@@ -5,8 +5,8 @@ from functools import wraps
 
 from django.conf import settings
 from django.http import Http404
+from django.shortcuts import render
 
-from homepage.ui import heading, page
 from services import find_by_id
 from storage import load_state
 
@@ -34,15 +34,7 @@ def with_state(view):
             state = get_state()
         except (OSError, ValueError):
             logger.exception("Не удалось прочитать хранилище конференций")
-            return page(
-                "Данные временно недоступны",
-                heading(
-                    "Ошибка хранилища",
-                    "Данные временно недоступны",
-                    "Не удалось загрузить данные. Обратитесь к организатору и попробуйте позже.",
-                ),
-                status=503,
-            )
+            return render(request, "503.html", status=503)
         return view(request, state, *args, **kwargs)
 
     return wrapped

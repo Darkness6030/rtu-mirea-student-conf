@@ -1,0 +1,7 @@
+{% if not is_open %}
+    <span class="status">Приём завершён</span>
+{% elif not has_free_slot %}
+    <span class="status status-cancelled">Мест нет</span>
+{% else %}
+    <span class="status status-open">Есть места</span>
+{% endif %}

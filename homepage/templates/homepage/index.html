@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Главная{% endblock %}
+{% block content %}
+    <h1 class="h4 mb-3">Студенческие конференции</h1>
+    <p>Конференции, секции, участники и их доклады.</p>
+    <ul class="list-group">
+        <li class="list-group-item d-flex justify-content-between">
+            <a href="{% url 'conferences:list' %}">Конференции</a>
+            <span class="text-secondary">{{ conferences|length }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between">
+            <a href="{% url 'sections:list' %}">Секции</a>
+            <span class="text-secondary">{{ sections|length }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between">
+            <a href="{% url 'talks:list' %}">Доклады</a>
+            <span class="text-secondary">{{ talks|length }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between">
+            <a href="{% url 'students:list' %}">Студенты</a>
+            <span class="text-secondary">{{ students|length }}</span>
+        </li>
+    </ul>
+{% endblock %}

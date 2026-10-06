@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Доклады{% endblock %}
+{% block content %}
+    <h1>Доклады</h1>
+    <p>Всего: {{ talks|length }}. Темы, авторы и аннотации работ.</p>
+    <div class="cards-grid">
+        {% for talk in talks %}
+            {% include "talks/includes/talk_card.html" %}
+        {% empty %}
+            <p>Записей пока нет</p>
+        {% endfor %}
+    </div>
+{% endblock %}

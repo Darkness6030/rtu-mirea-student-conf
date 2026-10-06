@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Секции{% endblock %}
+{% block content %}
+    <h1>Секции</h1>
+    <p>Всего: {{ sections|length }}. По возрастанию лимита докладов.</p>
+    <div class="cards-grid">
+        {% for item in sections %}
+            <article class="card">
+                <div class="card-body">
+                    <div class="card-top">
+                        <span>{{ item.section.conference.name }}</span>
+                        {% include "sections/includes/section_status.html" with is_open=item.is_open has_free_slot=item.has_free_slot %}
+                    </div>
+                    <h2>{{ item.section.name|default:"Без названия" }}</h2>
+                    <p>Докладов: {{ item.active_count }} / {{ item.section.capacity }}</p>
+                    <a href="{% url 'sections:detail' item.section.id %}">Открыть секцию →</a>
+                </div>
+            </article>
+        {% empty %}
+            <p>Записей пока нет</p>
+        {% endfor %}
+    </div>
+{% endblock %}

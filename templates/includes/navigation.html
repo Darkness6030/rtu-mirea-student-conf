@@ -1,0 +1,19 @@
+{% load static %}
+<header class="site-header">
+    <div class="container header-inner">
+        <a class="brand" href="{% url 'homepage:index' %}">
+            <img src="{% static 'homepage/img/logo.svg' %}" alt="" width="28" height="28">
+            СтудКонф
+        </a>
+        <nav aria-label="Основная навигация">
+            <a class="nav-link{% if request.resolver_match.app_name == 'conferences' %} active{% endif %}"
+               href="{% url 'conferences:list' %}">Конференции</a>
+            <a class="nav-link{% if request.resolver_match.app_name == 'sections' %} active{% endif %}"
+               href="{% url 'sections:list' %}">Секции</a>
+            <a class="nav-link{% if request.resolver_match.app_name == 'talks' %} active{% endif %}"
+               href="{% url 'talks:list' %}">Доклады</a>
+            <a class="nav-link{% if request.resolver_match.app_name == 'students' %} active{% endif %}"
+               href="{% url 'students:list' %}">Студенты</a>
+        </nav>
+    </div>
+</header>
