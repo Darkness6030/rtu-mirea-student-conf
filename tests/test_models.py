@@ -3,8 +3,6 @@ from datetime import date
 import pytest
 
 import services
-from json_store import load_json
-from pr2 import service as functional
 from storage import load_state, save_state
 
 
@@ -27,20 +25,21 @@ def test_shared_object_identity_after_roundtrip(state, tmp_path):
         talk.is_cancelled = False
 
 
-def test_pr2_pr3_same_scenarios(state):
-    raw = load_json("data/sample.json")
-    for data, api in ((raw, functional), (state, services)):
-        api.add_conference(data, "Новая", "2027-05-01", "2027-04-01", "Москва")
-        api.add_student(data, "Иван", "А-1")
-        api.add_section(data, "Новая секция", 3, 1)
-        api.submit_talk(data, "Тема", "Текст", 4, 4, date(2027, 4, 1))
-        with pytest.raises(ValueError):
-            api.submit_talk(data, "Тема", "Текст", 4, 4, date(2027, 4, 1))
-        api.cancel_talk(data, 5)
-        api.submit_talk(data, "Тема", "Текст", 4, 4, date(2027, 4, 1))
-        with pytest.raises(ValueError):
-            api.submit_talk(data, "Другая", "Текст", 4, 4, date(2027, 4, 1))
-    assert {key: [obj.to_dict() for obj in items] for key, items in state.items()} == raw
+def test_submit_cancel_and_resubmit(state):
+    services.add_conference(state, "Новая", "2027-05-01", "2027-04-01", "Москва")
+    services.add_student(state, "Иван", "А-1")
+    services.add_section(state, "Новая секция", 3, 1)
+    args = (state, "Тема", "Текст", 4, 4, date(2027, 4, 1))
+    talk = services.submit_talk(*args)
+    with pytest.raises(ValueError):
+        services.submit_talk(*args)
+    services.cancel_talk(state, talk.id)
+    replacement = services.submit_talk(*args)
+    assert talk.is_cancelled
+    assert not replacement.is_cancelled
+    assert replacement.id != talk.id
+    with pytest.raises(ValueError):
+        services.submit_talk(state, "Другая", "Текст", 4, 4, date(2027, 4, 1))
 
 
 @pytest.mark.parametrize(

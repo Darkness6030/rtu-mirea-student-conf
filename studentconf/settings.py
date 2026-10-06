@@ -24,15 +24,12 @@ MIDDLEWARE = [
 ROOT_URLCONF = "studentconf.urls"
 TEMPLATES = []
 WSGI_APPLICATION = "studentconf.wsgi.application"
-ASGI_APPLICATION = "studentconf.asgi.application"
 DATABASES = {}
 LANGUAGE_CODE = "ru-ru"
 TIME_ZONE = "Europe/Moscow"
-USE_I18N = True
 USE_TZ = True
 STATIC_URL = "/static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
-DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # Один снимок на запрос. Изменения из консоли видны после обновления страницы.
 DATA_FILE = Path(os.environ.get("CONFERENCE_DATA_FILE", BASE_DIR / "data" / "runtime.json"))
 SAMPLE_FILE = BASE_DIR / "data" / "sample.json"

@@ -79,12 +79,12 @@ def page(title, content, active="", status=200):
         '<link rel="stylesheet" href="/static/site.css"></head><body>'
         '<a class="skip-link" href="#main">К содержимому</a>'
         '<header class="site-header"><div class="container header-inner">'
-        '<a class="brand" href="/"><span class="brand-icon">С</span>СтудКонф</a>'
+        '<a class="brand" href="/">СтудКонф</a>'
         '<nav aria-label="Основная навигация">{}</nav>'
-        '<span class="header-label">Студенческая наука</span></div></header>'
+        "</div></header>"
         '<main id="main" class="container">{}</main>'
         '<footer class="container site-footer"><span>СтудКонф · РТУ МИРЭА</span>'
-        "<span>Идеи, которыми стоит поделиться</span></footer></body></html>",
+        "</footer></body></html>",
         title,
         navigation,
         content,

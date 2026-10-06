@@ -8,4 +8,3 @@ urlpatterns = [
     path("talks/", include("talks.urls")),
 ]
 handler404 = "homepage.views.page_not_found"
-handler500 = "homepage.views.server_error"

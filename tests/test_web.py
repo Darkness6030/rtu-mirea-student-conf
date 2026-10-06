@@ -9,7 +9,7 @@ import pytest
 from django.test import Client, override_settings
 from django.urls import resolve, reverse
 
-from json_store import load_json, save_json
+from storage import load_json, save_json
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "studentconf.settings")
 django.setup()
@@ -30,7 +30,7 @@ def client(tmp_path):
 @pytest.mark.parametrize(
     "path,expected",
     [
-        ("/", "Большие идеи"),
+        ("/", "Студенческие конференции"),
         ("/conferences/", "Конференции"),
         ("/conferences/1/", "Студенческая наука 2026"),
         ("/students/", "Студенты"),

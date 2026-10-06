@@ -1,22 +1,17 @@
 """ПР3: пользовательские сценарии с объектами предметной области."""
 
-from datetime import date
-from typing import TypeVar
-
 from models import Conference, Section, Student, Talk
 from validation import iso_date, text
 
-Entity = TypeVar("Entity", Conference, Section, Student, Talk)
 
-
-def find_by_id(items: list[Entity], item_id: int) -> Entity:
+def find_by_id(items: list, item_id: int):
     for item in items:
         if item.id == item_id:
             return item
     raise ValueError(f"Объект №{item_id} не найден")
 
 
-def next_id(items: list[Entity]) -> int:
+def next_id(items: list) -> int:
     return max((item.id for item in items), default=0) + 1
 
 
@@ -52,7 +47,7 @@ def submit_talk(state, title, abstract, student_id, section_id, today=None):
     section = find_by_id(state["sections"], section_id)
     student = find_by_id(state["students"], student_id)
     title = text(title)
-    if not section.conference.is_open(today or date.today()):
+    if not section.conference.is_open(today):
         raise ValueError("Приём докладов завершён")
     active = active_talks(state, section)
     if any(
