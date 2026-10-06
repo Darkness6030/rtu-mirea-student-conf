@@ -1,0 +1,15 @@
+> /private/tmp/student-conf-work/boundary_bug.py(1)<module>()
+-> def is_submission_open(deadline, today):
+(Pdb) Breakpoint 1 at /private/tmp/student-conf-work/boundary_bug.py:2
+(Pdb) > /private/tmp/student-conf-work/boundary_bug.py(2)is_submission_open()
+-> return today < deadline
+(Pdb) 6
+(Pdb) 6
+(Pdb) --Return--
+> /private/tmp/student-conf-work/boundary_bug.py(2)is_submission_open()->False
+-> return today < deadline
+(Pdb) False
+--Return--
+> /private/tmp/student-conf-work/boundary_bug.py(4)<module>()->None
+-> print(is_submission_open(6, 6))
+(Pdb) 
